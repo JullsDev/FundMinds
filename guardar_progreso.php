@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_usuario'])) {
     echo "Error: sesión no iniciada.";
     exit();
 }
-$id_usuario = intval($_SESSION['id_usuario']);
+$id_usuario = intval($_SESSION['id_usuario']); 
 
 // Validar POST
 if (!isset($_POST['id_actividad'])) {

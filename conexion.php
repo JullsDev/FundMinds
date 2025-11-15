@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = ""; 
 $database = "fundmindsdb"; 
 
 $conn = mysqli_connect($servername, $username, $password, $database);

@@ -105,7 +105,7 @@
         /* ======== ADAPTACIÓN A MÓVILES ======== */
         @media (max-width: 600px) {
             .hero h2 {
-                font-size: 28px;
+                font-size: 28px; 
             }
             .hero p {
                 font-size: 16px;

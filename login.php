@@ -5,7 +5,7 @@ include("conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = trim($_POST["correo"]);
-    $contrasena = trim($_POST["contrasena"]);
+    $contrasena = trim($_POST["contrasena"]); 
 
     $query = "SELECT * FROM usuarios WHERE correo = '$correo'";
     $resultado = mysqli_query($conn, $query);

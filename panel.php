@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background: linear-gradient(to bottom right, #a8e6ff, #f4e1ff);
             text-align: center;
             color: #333;
-            margin: 0;
+            margin: 0; 
             padding: 0;
         }
         .panel {

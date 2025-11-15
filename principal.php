@@ -3,7 +3,7 @@ session_start();
 include('conexion.php');
 
 // Verificar que haya sesión activa
-if (!isset($_SESSION['id_usuario'])) {
+if (!isset($_SESSION['id_usuario'])) { 
     header("Location: login.php");
     exit();
 }

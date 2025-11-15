@@ -48,7 +48,7 @@ $res_acts = mysqli_query($conn, $sql_acts);
 
 // Si no hay resultados, intentamos una búsqueda menos estricta (LIKE)
 if ($res_acts && mysqli_num_rows($res_acts) === 0) {
-    // fallback: buscar por LIKE (más flexible)
+    // fallback: buscar por LIKE (más flexible)   
     $like = mysqli_real_escape_string($conn, $transtorno_raw);
     $sql_acts = "SELECT id_actividad, nombre, descripcion, nivel_dificultad, recurso_url
                  FROM actividades
