@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fund Minds - Creciendo con el Corazón</title>
+    <title>Fun Minds - Creciendo con el Corazón</title>
     <style>
         /* ======== ESTILO GENERAL ======== */
         body {
@@ -117,7 +117,7 @@
 
     <!-- ======== ENCABEZADO ======== -->
     <header>
-        <h1>Fund Minds</h1>
+        <h1>Fun Minds</h1>
         <nav>
             <a href="login.php">Iniciar sesión</a>
             <a href="registro.php">Registrarse</a>
@@ -128,7 +128,7 @@
     <section class="hero">
         <h2>Desarrollando Mentes con Amor</h2>
         <p>
-            En <strong>Fund Minds</strong> creemos que cada niño y joven merece la oportunidad de alcanzar su máximo potencial.  
+            En <strong>Fun Minds</strong> creemos que cada niño y joven merece la oportunidad de alcanzar su máximo potencial.  
             Nuestra plataforma apoya el aprendizaje y desarrollo cognitivo a través de actividades, progreso personalizado y acompañamiento constante.  
             Trabajamos con empatía, innovación y dedicación para hacer del aprendizaje una experiencia positiva y accesible para todos.
         </p>
@@ -137,7 +137,7 @@
 
     <!-- ======== PIE DE PÁGINA ======== -->
     <footer>
-        © 2025 <span>Fund Minds</span> | Creciendo juntos con empatía y tecnología 💙
+        © 2025 <span>Fun Minds</span> | Creciendo juntos con empatía y tecnología 💙
     </footer>
 
 </body>

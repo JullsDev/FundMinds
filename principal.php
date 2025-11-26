@@ -38,13 +38,13 @@ $transtorno = $usuario['transtorno'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal - Fund Minds</title>
+    <title>Página Principal - Fun Minds</title>
     
 </head>
 <body>
 
 <header>
-    <h1>🌟 Bienvenido a Fund Minds, <?php echo $usuario['nombre']; ?> 🌟</h1>
+    <h1>🌟 Bienvenido a Fun Minds, <?php echo $usuario['nombre']; ?> 🌟</h1>
 </header>
 
 <?php if ($_SESSION['tipo_usuario'] === 'profesional') { ?>
