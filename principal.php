@@ -1,5 +1,14 @@
 <?php
 session_start();
+?>
+<?php
+if (!isset($_SESSION['tipo_usuario'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
+<?php 
 include('conexion.php');
 
 // Verificar que haya sesión activa
@@ -30,63 +39,28 @@ $transtorno = $usuario['transtorno'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Principal - Fund Minds</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom right, #a8e6ff, #f4e1ff);
-            color: #333;
-            margin: 0;
-            text-align: center;
-        }
-        header {
-            background-color: #5aa9e6;
-            color: white;
-            padding: 20px;
-            border-radius: 0 0 20px 20px;
-        }
-        h1 {
-            margin: 0;
-        }
-        .content {
-            padding: 30px;
-        }
-        .card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            padding: 30px;
-            width: 85%;
-            max-width: 750px;
-            margin: 20px auto;
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            background-color: #5aa9e6;
-            color: white;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: #3d8be4;
-        }
-        iframe {
-            width: 90%;
-            max-width: 600px;
-            height: 315px;
-            border-radius: 15px;
-            border: none;
-            margin-top: 15px;
-        }
-    </style>
+    
 </head>
 <body>
 
 <header>
     <h1>🌟 Bienvenido a Fund Minds, <?php echo $usuario['nombre']; ?> 🌟</h1>
 </header>
+
+<?php if ($_SESSION['tipo_usuario'] === 'profesional') { ?>
+    <div class="card">
+        <h2>💬 Comentarios o sugerencias</h2>
+
+        <form action="guardar_comentario.php" method="POST">
+            <textarea name="mensaje" rows="4"
+                placeholder="Escribe aquí tu sugerencia para mejorar la plataforma..."
+                required></textarea>
+            <br>
+            <button type="submit" class="btn">Enviar comentario</button>
+        </form>
+    </div>
+<?php } ?>
+
 
 <div class="content">
     <div class="card">
@@ -160,10 +134,60 @@ $transtorno = $usuario['transtorno'];
         echo "<p>No se ha asignado un trastorno.</p>";
         break;
 }
-
         ?>
     </div>
 </div>
 
 </body>
+<style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #a8e6ff, #f4e1ff);
+            color: #333;
+            margin: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #5aa9e6;
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 20px 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .content {
+            padding: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            padding: 30px;
+            width: 85%;
+            max-width: 750px;
+            margin: 20px auto;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #5aa9e6;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #3d8be4;
+        }
+        iframe {
+            width: 90%;
+            max-width: 600px;
+            height: 315px;
+            border-radius: 15px;
+            border: none;
+            margin-top: 15px;
+        }
+    </style>
 </html>

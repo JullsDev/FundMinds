@@ -99,12 +99,12 @@ if ($res_acts && mysqli_num_rows($res_acts) === 0) {
             $nombre_act = htmlspecialchars($act['nombre']);
             $desc = nl2br(htmlspecialchars($act['descripcion']));
             $nivel = htmlspecialchars($act['nivel_dificultad'] ?? '');
-            $recurso = htmlspecialchars($act['recurso_url'] ?? '');
+            
             echo "<div class='actividad'>
                     <h3>{$nombre_act}</h3>
                     <p>{$desc}</p>";
             if ($nivel) echo "<p><b>Dificultad:</b> {$nivel}</p>";
-            if ($recurso) echo "<p><a href='{$recurso}' target='_blank'>Ver recurso</a></p>";
+            
             echo "<button class='btn' onclick='guardarProgreso({$id_act}, this)'>Marcar como completada ✅</button>
                   </div>";
         }

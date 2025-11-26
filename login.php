@@ -5,33 +5,58 @@ include("conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = trim($_POST["correo"]);
-    $contrasena = trim($_POST["contrasena"]); 
+    $contrasena = trim($_POST["contrasena"]);
 
-    $query = "SELECT * FROM usuarios WHERE correo = '$correo'";
-    $resultado = mysqli_query($conn, $query);
+    // Prepared statement para evitar SQL injection
+    $sql = "SELECT * FROM usuarios WHERE correo = ?";
+    if ($stmt = mysqli_prepare($conn, $sql)) {
+        mysqli_stmt_bind_param($stmt, "s", $correo);
+        mysqli_stmt_execute($stmt);
+        $resultado = mysqli_stmt_get_result($stmt);
 
-    if (mysqli_num_rows($resultado) == 1) {
-        $usuario = mysqli_fetch_assoc($resultado);
+        if ($resultado && mysqli_num_rows($resultado) == 1) {
+            $usuario = mysqli_fetch_assoc($resultado);
 
-        // ✅ Verificar contraseña (encriptada o texto plano)
-        if (password_verify($contrasena, $usuario["contrasena"]) || $contrasena === $usuario["contrasena"]) {
+            // Verificar contraseña (hash o texto plano)
+            $stored = $usuario["contrasena"];
 
-            // ✅ Guardar datos en la sesión (con nombre correcto de la columna)
-            $_SESSION["id_usuario"] = $usuario["id_usuario"];
-            $_SESSION["nombre"] = $usuario["nombre"];
-            $_SESSION["tipo_usuario"] = $usuario["tipo_usuario"];
+            $password_ok = false;
+            if (password_verify($contrasena, $stored)) {
+                $password_ok = true;
+            } elseif ($contrasena === $stored) {
+                // Mantener compatibilidad con contraseñas en texto plano (no recomendado)
+                $password_ok = true;
+            }
 
-            // ✅ Redirigir al panel
-            header("Location: panel.php");
-            exit();
+            if ($password_ok) {
+                // Guardar datos relevantes en la sesión
+                $_SESSION["id_usuario"]   = $usuario["id_usuario"];
+                $_SESSION["nombre"]       = $usuario["nombre"];
+                $_SESSION["tipo_usuario"] = $usuario["tipo_usuario"]; // contiene 'admin' para administradores
+
+                // Redirigir según rol (tu rol admin se llama 'admin')
+                if (isset($usuario['tipo_usuario']) && $usuario['tipo_usuario'] === 'admin') {
+                    header("Location: admin.php");
+                    exit();
+                } else {
+                    header("Location: panel.php");
+                    exit();
+                }
+
+            } else {
+                echo "<script>alert('Contraseña incorrecta'); window.location='login.php';</script>";
+                exit();
+            }
 
         } else {
-            echo "<script>alert('Contraseña incorrecta'); window.location='login.php';</script>";
+            echo "<script>alert('Usuario no encontrado'); window.location='login.php';</script>";
             exit();
         }
 
+        mysqli_stmt_close($stmt);
     } else {
-        echo "<script>alert('Usuario no encontrado'); window.location='login.php';</script>";
+        // Error preparando la consulta
+        echo "<script>alert('Error del servidor. Intente más tarde'); window.location='login.php';</script>";
         exit();
     }
 }

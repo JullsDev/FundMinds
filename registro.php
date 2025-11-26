@@ -86,8 +86,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="contrasena" placeholder="Contraseña" required><br>
             <select name="tipo_usuario" required>
                 <option value="">Selecciona tipo de usuario</option>
-                <option value="niño">Niño</option>
+                <option value="niño">Estudiante</option>
                 <option value="acudiente">Acudiente</option>
+                <option value="admin">Administrador</option>
+                <option value="profesional">Profesional</option>
             </select><br>
             <button type="submit">Registrarse</button>
         </form>
